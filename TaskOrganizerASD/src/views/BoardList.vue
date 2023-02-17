@@ -19,7 +19,7 @@
     methods: {
       async getData() {
         try {
-          const response = await fetch('http:/localhost:3001/api/boards', {mode : 'no-cors'})
+          const response = await fetch('http://localhost:3001/api/boards')
           const data = await response.json()
           this.items = data;
         } catch (error) {

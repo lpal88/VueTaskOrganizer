@@ -1,16 +1,17 @@
 <template>
     <div>
       <ul class="list">
-        <li v-for="item in items" :key="item.id" class="list-item">{{ item.description }}</li>
+        <li v-for="task in tasks" :key="task.id" class="list-task"><img :src=fetchImageURL+task.image></li>
       </ul>
     </div>
   </template>
-  
+
   <script>
   export default {
     data() {
       return {
-        items: []
+        tasks: [],
+        fetchImageURL: "http://localhost:3001/api/pictograms/"
       };
     },
     mounted() {
@@ -19,11 +20,9 @@
     methods: {
       async getData() {
         try {
-          const response = await fetch('http://localhost:3001/api/tasks', {mode:'no-cors'})
-          console.log(response)
+          const response = await fetch('http://localhost:3001/api/tasks')
           const data = await response.json()
-          console.log(data)
-          this.items = data
+          this.tasks = data
         } catch (error) {
           console.log(error)
         }
@@ -36,20 +35,17 @@
 
 <style scoped>
 .list {
-  list-style-type: none;
-  padding: 0;
-  margin: 0;
-  background-color: #f0f0f0;
-  border: 1px solid #ddd;
-  border-radius: 4px;
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+  grid-gap: 20px;
 }
 
-.list-item {
-  padding: 10px;
-  border-bottom: 1px solid #ddd;
+.list-task {
+  list-style: none;
 }
 
-.list-item:last-child {
-  border-bottom: none;
+.list-task img {
+  width: 100%;
+  height: auto;
 }
 </style>
