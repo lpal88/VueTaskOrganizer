@@ -8,7 +8,7 @@
         <input type="password" v-model="password">
         </label>
         <p>{{ name }}</p>
-        <button type="submit">ENTRAR</button>
+        <button type="submit"><router-link class="navbar__link" to="/list">ENTRAR</router-link></button>
     </form>
 </template>
 

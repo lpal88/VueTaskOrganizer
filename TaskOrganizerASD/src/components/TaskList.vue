@@ -1,74 +1,55 @@
 <template>
-    <h2>CLICKA EN EL PICTOGRAMA QUE NECESITES</h2>
-    <button class="taskList__btn" @click="showHomeTasks">Home</button>
-    <button class="taskList__btn" @click="showSchoolTasks">School</button>
-    <button class="taskList__btn" @click="showOutsideTasks">Outside</button>
-    <div v-if="home" class="taskList__home">
-        <ul>
-            <li>1</li>
-            <li>2</li>
-            <li>3</li>
-        </ul>
+    <div>
+      <ul class="list">
+        <li v-for="item in items" :key="item.id" class="list-item">{{ item.description }}</li>
+      </ul>
     </div>
-    <div v-else-if="school" class="taskList__home">
-        <ul>
-            <li>a</li>
-            <li>b</li>
-            <li>c</li>
-        </ul>
-    </div>
-    <div v-else-if="outside" class="taskList__home">
-        <ul>
-            <li>*</li>
-            <li>/</li>
-            <li>-</li>
-        </ul>
-    </div>
-</template>
-
-<script>
-    export default {
-        data() {
-            return {
-                home: false,
-                school: false,
-                outside: false
-                }
-  },
-  methods: {
-    showHomeTasks() {
-        console.log("home tasks")
-        this.home = true
-        this.school = false
+  </template>
+  
+  <script>
+  export default {
+    data() {
+      return {
+        items: []
+      };
     },
-    showSchoolTasks() {
-        console.log("school tasks")
-      this.home = false
-      this.school = true
+    mounted() {
+      this.getData()
     },
-    showOutsideTasks() {
-        console.log("outside tasks")
-      this.home = false
-      this.school = false
-      this.outside = true
-    }
-  }
-        
-    }
-</script>
+    methods: {
+      async getData() {
+        try {
+          const response = await fetch('http://localhost:3001/api/tasks', {mode:'no-cors'})
+          console.log(response)
+          const data = await response.json()
+          console.log(data)
+          this.items = data
+        } catch (error) {
+          console.log(error)
+        }
+      },
+    },
+  };
+  </script>
+  
 
-<style>
-.taskList {
-    border: 3px solid black;
-    display:flex;
-    flex-wrap: wrap;
+
+<style scoped>
+.list {
+  list-style-type: none;
+  padding: 0;
+  margin: 0;
+  background-color: #f0f0f0;
+  border: 1px solid #ddd;
+  border-radius: 4px;
 }
-.taskList__task {
-    width: 45%;
+
+.list-item {
+  padding: 10px;
+  border-bottom: 1px solid #ddd;
 }
 
-.taskList__btn {
-
+.list-item:last-child {
+  border-bottom: none;
 }
-
 </style>

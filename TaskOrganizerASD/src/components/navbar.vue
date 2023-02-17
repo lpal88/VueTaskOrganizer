@@ -2,6 +2,7 @@
     <div>
         <router-link class="navbar__link" to="/singup">Registro</router-link>
         <router-link class="navbar__link" to="/login">Mi espacio</router-link>
+        <router-link class="navbar__link" to="/create">Crear un tablero</router-link>
     </div>
 </template>
 
