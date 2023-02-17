@@ -1,16 +1,18 @@
 <template>
     <div>
       <ul class="list">
-        <li v-for="item in items" :key="item.id" class="list-item">{{ item.label }}</li>
+        <li v-for="board in boards" :key="board.id" class="list-board">{{ board.label }}</li>
       </ul>
     </div>
   </template>
   
   <script>
+import TaskList from '../components/TaskList.vue';
   export default {
+  components: { TaskList },
     data() {
       return {
-        items: []
+        boards: []
       };
     },
     mounted() {
@@ -21,7 +23,7 @@
         try {
           const response = await fetch('http://localhost:3001/api/boards')
           const data = await response.json()
-          this.items = data;
+          this.boards = data;
         } catch (error) {
           console.log(error)
         }
@@ -41,12 +43,12 @@
   border-radius: 4px;
 }
 
-.list-item {
+.list-board {
   padding: 10px;
   border-bottom: 1px solid #ddd;
 }
 
-.list-item:last-child {
+.list-board:last-child {
   border-bottom: none;
 }
 </style>

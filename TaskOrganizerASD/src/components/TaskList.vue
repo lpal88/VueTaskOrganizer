@@ -1,7 +1,7 @@
 <template>
     <div>
       <ul class="list">
-        <li v-for="task in tasks" :key="task.id" class="list-task"><img :src=fetchImageURL+task.image></li>
+        <li v-for="task in tasks" :key="task.id" class="list-task"><img :src=urlPictograms+task.image></li>
       </ul>
     </div>
   </template>
@@ -11,7 +11,7 @@
     data() {
       return {
         tasks: [],
-        fetchImageURL: "http://localhost:3001/api/pictograms/"
+        urlPictograms: "http://localhost:3001/api/pictograms/"
       };
     },
     mounted() {
@@ -36,7 +36,7 @@
 <style scoped>
 .list {
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+  grid-template-columns: repeat(auto-fit, minmax(100px, 1fr));
   grid-gap: 20px;
 }
 
