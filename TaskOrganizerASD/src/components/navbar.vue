@@ -1,8 +1,8 @@
 <template>
   <div class="navbar__links">
-    <router-link class="navbar__link" to="/singup">Registro</router-link>
-    <router-link class="navbar__link" to="/login">Mi espacio</router-link>
-    <router-link class="navbar__link" to="/create">Crear un tablero</router-link>
+    <router-link class="navbar__link" to="/singup">REGISTRO</router-link>
+    <router-link class="navbar__link" to="/login">MI ESPACIO</router-link>
+    <router-link class="navbar__link" to="/create">CREAR TABLERO</router-link>
   </div>
 </template>
 
@@ -13,6 +13,7 @@
 </script>
 
 <style scoped>
+
 .navbar__links {
   display: flex;
   justify-content: flex-start;

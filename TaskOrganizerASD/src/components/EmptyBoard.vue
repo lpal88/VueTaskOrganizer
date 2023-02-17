@@ -15,15 +15,17 @@
 </script>
 
 <style scoped>
+
 .emptyBoard {
-    height: 50%;
-    width: 50%;
-    padding: 5px;
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(204px, 1fr));
-    gap: 5px;
+    display: flex;
+    flex-wrap: wrap;
+    width: 48%;
+    height: 400px;
+    background-color: #F2F2F2;
+    box-shadow: 5px 5px 5px grey;
+    margin-top: 50px ;
 }
-.emptyBoard__cell {
-    border:2px solid black; ;
-}
+
+  
+
 </style>

@@ -1,7 +1,7 @@
 <template>
     <div>
         <h1>Organizador de Tareas TEA</h1>
-        <img src="../assets/images/homeImg.png" alt="">
+        <img src="" alt="">
     </div>
 </template>
 
@@ -18,12 +18,11 @@ div {
     justify-content: center;
     align-items: center;
     width: 100%;
+    text-align: center;
 }
 h1 {
     width: 50%;
     font-size: 4rem;
 }
-img {
-    width: 49%;
-}
+
 </style>

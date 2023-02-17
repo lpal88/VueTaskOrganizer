@@ -1,7 +1,7 @@
 <template>
     <div>
       <ul class="list">
-        <li v-for="board in boards" :key="board.id" class="list-board">{{ board.label }}</li>
+        <li v-for="board in boards" :key="board.id" class="list__board">{{ board.label }}</li>
       </ul>
     </div>
   </template>
@@ -43,12 +43,12 @@ import TaskList from '../components/TaskList.vue';
   border-radius: 4px;
 }
 
-.list-board {
+.list__board {
   padding: 10px;
   border-bottom: 1px solid #ddd;
 }
 
-.list-board:last-child {
+.list__board:last-child {
   border-bottom: none;
 }
 </style>
