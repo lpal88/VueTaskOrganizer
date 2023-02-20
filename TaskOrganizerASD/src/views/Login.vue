@@ -1,26 +1,33 @@
 <template>
-    <form>
+    <form @submit.prevent="login({ name: this.name, password: this.password})">
         <label>NOMBRE
-        <input type="text" v-model="name">
+        <input name="name" type="text" v-model="name" required>
         </label>
-        <p>{{ name }}</p>
         <label>CONTRASEÑA
-        <input type="password" v-model="password">
+        <input name="password" type="password" v-model="password" required>
         </label>
-        <p>{{ name }}</p>
         <button type="submit"><router-link class="navbar__link" to="/list">ENTRAR</router-link></button>
     </form>
 </template>
 
 <script>
+import { mapState, mapActions } from "vuex"
     export default {
         data(){
             return {
                 name: "",
-                password: ""
-            }
-            
-        }
+                password: null
+            }  
+        },
+        computed:{
+            ...mapState('user', {
+                user: state => state.userData,
+                message: state => state.message,
+            }),
+        },
+        methods: {
+            ...mapActions('user', { login: "login" })
+    }
         
     }
 </script>
