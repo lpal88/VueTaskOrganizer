@@ -64,5 +64,11 @@ export default {
                 console.error(error.message)
             }
         },
-    }
+    },
+    getters: { 
+        userBoards(state, rootState) { 
+            // TODO
+                }
+            
+    },
 }
