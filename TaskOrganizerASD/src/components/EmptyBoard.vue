@@ -1,9 +1,8 @@
 <template>
     <div class="emptyBoard">
-        <div class="emptyBoard__cell"></div>
-        <div class="emptyBoard__cell"></div>
-        <div class="emptyBoard__cell"></div>
-        <div class="emptyBoard__cell"></div>
+        <ul>
+            <li></li>
+        </ul>
 
     </div>
 </template>
