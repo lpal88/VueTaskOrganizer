@@ -1,5 +1,5 @@
 <template>
-    <form>
+    <form @submit.prevent="singup({ name: this.name, age: this.age, email: this.email, password: this.password})">
         <label>NOMBRE
             <input name="name" v-model="name" type="text" required></label>
         <label>EDAD
