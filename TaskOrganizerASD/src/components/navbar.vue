@@ -1,15 +1,35 @@
 <template>
   <div class="navbar__links">
+    <router-link class="navbar__link" to="/">INICIO</router-link>
     <router-link class="navbar__link" to="/singup">REGISTRO</router-link>
     <router-link class="navbar__link" to="/login">MI ESPACIO</router-link>
-    <router-link class="navbar__link" to="/create">CREAR TABLERO</router-link>
+    <button @click="handleSingOut" v-if="isLoggedIn">Cerrar Sesión</button>
   </div>
 </template>
 
-<script>
-    export default {
-        
-    }
+<script setup>
+import {onMounted, ref} from "vue"
+import { getAuth, onAuthStateChanged, signOut} from "firebase/auth"
+import {useRouter} from "vue-router"
+const router = useRouter()
+const isLoggedIn = ref(false)
+let auth
+onMounted(() => {
+  auth = getAuth()
+  onAuthStateChanged(auth, (user) => {
+    if (user){
+      isLoggedIn.value = true
+    }else {
+      isLoggedIn.value = false
+    }  
+  })
+})
+const handleSingOut = () => {
+  signOut(auth).then(() => {
+    router.push("/")
+  })
+}
+
 </script>
 
 <style scoped>

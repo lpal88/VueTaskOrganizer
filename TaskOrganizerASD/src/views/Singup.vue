@@ -1,44 +1,33 @@
 <template>
-    <form @submit.prevent="singup({ name: this.name, age: this.age, email: this.email, password: this.password})">
-        <label>NOMBRE
-            <input name="name" v-model="name" type="text" required></label>
-        <label>EDAD
-            <input name="age" v-model="age" type="number"></label>
+    <form>
         <label>CORREO ELECTRÓNICO
             <input name="email" v-model="email" type="email" required></label>
         <label>CONTRASEÑA
             <input name="password" v-model="password" type="password" required></label>
-        <label>CONFIRMAR CONTRASEÑA
-            <input name="confirmPassword" v-model="confirmPassword" type="password" required></label>
-        <button type="submit">REGISTRAR</button>
+        <button @click="register" >REGISTRAR</button>
     </form>
-    <span v-if="message"> {{ message }}</span>
 </template>
 
-<script>
-import { mapState, mapActions } from "vuex"
-    export default {
-        data() {
-        return {
-            name:'',
-            age: null,
-            email: null,
-            password: null,
-            confirmPassword: '',
-        }
-    },
-        computed:{
-            ...mapState('user', {
-                user: state => state.userData,
-                message: state => state.message,
-            }),
-        },
-        methods: {
-            ...mapActions('user', {
-                singup: "singup"
-            })
-    }
+<script setup>
+import {ref} from "vue"
+import {getAuth, createUserWithEmailAndPassword } from "firebase/auth"
+import {useRouter} from "vue-router"
+const email = ref("")
+const password = ref("")
+const router = useRouter()
+
+const register = () => {
+    createUserWithEmailAndPassword(getAuth(), email.value, password.value)
+    .then((data) => {
+        console.log(auth.currentUser)
+        router.push('/login')
+    })
+    .catch((error) => {
+        console.log(error.code)
+        alert(error.message)
+    })
 }
+
 </script>
 
 <style scoped>
