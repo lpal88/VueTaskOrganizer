@@ -1,15 +1,19 @@
 <template>
     <div class="emptyBoard">
         <ul>
-            <li></li>
+            <li v-for="task in tasks" :key="task.id">{{ task.image }}</li>
         </ul>
-
     </div>
 </template>
 
 <script>
     export default {
-        
+        props: {
+            tasks: {
+                type: Array,
+                default: () => []
+            }
+        }
     }
 </script>
 

@@ -1,27 +1,29 @@
 <template>
     <section>
-    <empty-board />
+    <EmptyBoard :tasks="tasks" />
     <button @click="playBoard">Reproducir</button>
     <!--TODO playBoard-->
-    <task-list />
+    <TaskList @addTaskToBoard="addTaskToBoard" />
     </section>
 </template>
 
 <script>
 import EmptyBoard from '../components/EmptyBoard.vue'
 import TaskList from '../components/TaskList.vue'
-import {mapActions, mapGetters} from "vuex"
+import {mapActions, mapState, mapGetters} from "vuex"
 export default {
   name: "CreateBoard",
   components: { TaskList, EmptyBoard },
   computed: {
+    ...mapState('board', ['tasks']),
     ...mapGetters ('board',{
                 tasks: "allTasksInBoard",
             }),
   },
   methods: {
-    ...mapActions('crudBoard',["addBoard"])
-        } 
+    ...mapActions('crudBoard',["addBoard"]) ,
+    ...mapActions('board', ['addTaskToBoard'])
+}
 }
 </script>
 

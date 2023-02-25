@@ -1,5 +1,5 @@
 export default {
-    namespace: true,
+    namespaced: true,
     state: {
         board: {},
         tasks : []
@@ -11,7 +11,7 @@ export default {
       
     },
     actions: {
-        async addBoard({ state }) {
+ /*        async addBoard({ state }) {
             const response = await fetch('https://apitaskorganizer-production.up.railway.app/api/boards', {
                 method: 'PUT',
                 headers: {
@@ -22,7 +22,7 @@ export default {
                 state
                 })
             })
-        },
+        }, */
         addTaskToBoard({state, getters, commit, rootState, rootGetters}, task){
             console.log(task)
             const BoardTask = state.tasks.find(taskId => taskId === task.id)
@@ -38,9 +38,9 @@ export default {
         },
         allTasksInBoard(state, getters, rootState, rootGetters){ 
             return state.tasks.map(taskInBoard => {
-                const task = rootState.tasks.tasks.find(task => task.id === taskInBoard)
+                const task = rootState.board.tasks.find(task => task.id === taskInBoard)
                 return {
-                    image: task.image
+                    image: task?.image || ''
                 }
             })
         },
