@@ -1,17 +1,21 @@
 <template>
     <div class="scrollable">
       <ul class="list">
-        <li v-for="task in tasks" :key="task.id" class="list__task"><img :src=urlPictograms+task.image></li>
+        <li v-for="task in tasks" :key="task.id" class="list__task"><img :src=urlPictograms+task.image>        
+          <button @click="addTaskToBoard(task)">Seleccionar</button>
+        </li>
       </ul>
     </div>
   </template>
 
   <script>
+  import {mapActions} from "vuex"
   export default {
+    name: "tasks",
     data() {
       return {
         tasks: [],
-        urlPictograms: "http://localhost:3001/api/pictograms/"
+        urlPictograms: "https://apitaskorganizer-production.up.railway.app/api/pictograms/"
       };
     },
     mounted() {
@@ -20,15 +24,26 @@
     methods: {
       async getData() {
         try {
-          const response = await fetch('http://localhost:3001/api/tasks')
+          const response = await fetch('https://apitaskorganizer-production.up.railway.app/api/tasks',{
+                method: 'GET',
+                headers: {
+                    'Content-Type': 'application/json',
+                mode : "no-cors"
+                }
+            })
           const data = await response.json()
           this.tasks = data
         } catch (error) {
           console.log(error)
         }
       },
-    },
-  };
+      ...mapActions('board', {
+          addTaskToBoard: 'addTaskToBoard'
+      })
+
+    }
+  }
+
   </script>
   
 

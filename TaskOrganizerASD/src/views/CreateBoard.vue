@@ -1,7 +1,8 @@
 <template>
     <section>
     <empty-board />
-    <button @click="addBoardToUser">Guardar</button>
+    <button @click="playBoard">Reproducir</button>
+    <!--TODO playBoard-->
     <task-list />
     </section>
 </template>
@@ -9,11 +10,17 @@
 <script>
 import EmptyBoard from '../components/EmptyBoard.vue'
 import TaskList from '../components/TaskList.vue'
-import {mapActions} from "vuex"
+import {mapActions, mapGetters} from "vuex"
 export default {
+  name: "CreateBoard",
   components: { TaskList, EmptyBoard },
+  computed: {
+    ...mapGetters ('board',{
+                tasks: "allTasksInBoard",
+            }),
+  },
   methods: {
-    ...mapActions('crudBoard',["addBoardToUser"])
+    ...mapActions('crudBoard',["addBoard"])
         } 
 }
 </script>

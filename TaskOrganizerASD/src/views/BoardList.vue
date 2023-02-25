@@ -21,7 +21,7 @@ import TaskList from '../components/TaskList.vue';
     methods: {
       async getData() {
         try {
-          const response = await fetch('http://localhost:3001/api/boards')
+          const response = await fetch('https://apitaskorganizer-production.up.railway.app/api/boards')
           const data = await response.json()
           this.boards = data;
         } catch (error) {

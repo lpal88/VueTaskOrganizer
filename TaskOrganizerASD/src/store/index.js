@@ -1,9 +1,13 @@
 import { createStore } from 'vuex'
-import user from './user'
+import user from './modules/user'
+import board from './modules/board'
+import task from './modules/task'
 
 const store = createStore({
     modules:{
-      user
+      user,
+      board,
+      task
     },})
 
 export default store
