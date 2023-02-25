@@ -27,7 +27,7 @@ export default {
             console.log(task)
             const BoardTask = state.tasks.find(taskId => taskId === task.id)
             if (!BoardTask){
-                commit("pushTaskToBoard", task.id)
+                commit("pushTaskToBoard", task)
 
             }
         },
@@ -38,9 +38,11 @@ export default {
         },
         allTasksInBoard(state, getters, rootState, rootGetters){ 
             return state.tasks.map(taskInBoard => {
-                const task = rootState.board.tasks.find(task => task.id === taskInBoard.data)
+                console.log(taskInBoard.image)
+/*                 const task = rootState.board.tasks.find(task => task.id === taskInBoard.data) */
                 return {
-                    image: task?.image || ''
+
+                    image: taskInBoard.image
                 }
             })
         },
