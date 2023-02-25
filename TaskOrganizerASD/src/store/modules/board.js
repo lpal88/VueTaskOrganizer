@@ -38,7 +38,7 @@ export default {
         },
         allTasksInBoard(state, getters, rootState, rootGetters){ 
             return state.tasks.map(taskInBoard => {
-                const task = rootState.board.tasks.find(task => task.id === taskInBoard)
+                const task = rootState.board.tasks.find(task => task.id === taskInBoard.data)
                 return {
                     image: task?.image || ''
                 }

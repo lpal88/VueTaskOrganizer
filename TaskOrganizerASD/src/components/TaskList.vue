@@ -48,7 +48,7 @@
   
 
 
-<style scoped>
+<style>
 
 .list {
   display: grid;

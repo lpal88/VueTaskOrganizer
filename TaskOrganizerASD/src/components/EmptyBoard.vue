@@ -18,7 +18,6 @@
 </script>
 
 <style scoped>
-
 .emptyBoard {
     display: flex;
     flex-wrap: wrap;
@@ -28,7 +27,5 @@
     box-shadow: 5px 5px 5px grey;
     margin-top: 50px ;
 }
-
   
-
 </style>
