@@ -1,19 +1,32 @@
 <template>
     <div class="emptyBoard">
-        <ul>
-            <li v-for="task in tasks" :key="task.id">{{ task.image }}</li>
+        <ul :tasks="tasks">
+            <li v-for="task in tasks" :key="task.id"><img :src=urlPictograms+task.image></li>
         </ul>
     </div>
 </template>
 
 <script>
+import { mapGetters } from 'vuex'
     export default {
+        data() {
+            return {
+            urlPictograms: "https://apitaskorganizer-production.up.railway.app/api/pictograms/"
+        }
+        },
         props: {
             tasks: {
                 type: Array,
                 default: () => []
             }
+        },
+        computed: {
+            ...mapGetters ('board',{
+                tasks: "allTasksInBoard",
+            }),
+            
         }
+
     }
 </script>
 
