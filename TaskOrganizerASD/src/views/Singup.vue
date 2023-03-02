@@ -19,7 +19,8 @@ const router = useRouter()
 const register = () => {
     createUserWithEmailAndPassword(getAuth(), email.value, password.value)
     .then((data) => {
-        console.log(auth.currentUser)
+        console.log(data)
+        console.log("registrado")
         router.push('/login')
     })
     .catch((error) => {

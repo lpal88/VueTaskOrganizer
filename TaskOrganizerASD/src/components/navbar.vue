@@ -19,6 +19,7 @@ onMounted(() => {
   onAuthStateChanged(auth, (user) => {
     if (user){
       isLoggedIn.value = true
+      console.log("logged")
     }else {
       isLoggedIn.value = false
     }  
@@ -26,6 +27,7 @@ onMounted(() => {
 })
 const handleSingOut = () => {
   signOut(auth).then(() => {
+    console.log("cerrando sesion")
     router.push("/")
   })
 }
@@ -62,6 +64,9 @@ const handleSingOut = () => {
 .navbar__link.active {
   background-color:#51d1f6;
   color: #fff;
+}
+button {
+  justify-self: flex-end;
 }
 
 </style>

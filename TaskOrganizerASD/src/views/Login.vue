@@ -23,7 +23,7 @@ const router = useRouter()
 const login = () => {
     signInWithEmailAndPassword(getAuth(), email.value, password.value)
     .then((data) => {
-        console.log(auth.currentUser)
+        console.log("entrando en la app")
         router.push('/create')
     })
     .catch((error) => {
@@ -38,9 +38,7 @@ const login = () => {
             case "auth/wrong-password":
                 errMsg.value = "constraseña incorrecta" 
                 break      
-            default:
-                errMsg.value = "email/contraseña incorrecta"    
-                break
+         
         }
  
     })
