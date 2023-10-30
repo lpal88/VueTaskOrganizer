@@ -14,7 +14,7 @@
   export default {
     data() {
       return {
-        urlPictograms: `https://apitaskorganizer-production.up.railway.app/api/pictograms/`
+        urlPictograms: `http://localhost:3001/api/pictograms/`
       }
     },
 

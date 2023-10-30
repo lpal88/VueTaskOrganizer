@@ -18,7 +18,7 @@
       return {
         tasks: [],
 /*         urlPictograms: "https://apitaskorganizer-production.up.railway.app/api/pictograms/" */
-        urlPictograms: 'https://localhost:3001/pictograms'
+        urlPictograms: 'http://localhost:3001/api/pictograms/'
       };
     },
     mounted() {
@@ -29,11 +29,10 @@
       async getData() {
         try {
           //const response = await fetch('https://apitaskorganizer-production.up.railway.app/api/tasks',{
-            const response = await fetch('https://localhost:3001/api/tasks',{
+            const response = await fetch('http://localhost:3001/api/tasks',{
                 method: 'GET',
                 headers: {
-                    'Content-Type': 'application/json',
-                    mode : "no-cors" 
+                    'Content-Type': 'application/json'
                 }
             })
           const data = await response.json()
