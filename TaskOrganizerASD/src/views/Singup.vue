@@ -17,10 +17,11 @@ const password = ref("")
 const router = useRouter()
 
 const register = () => {
-    createUserWithEmailAndPassword(getAuth(), email.value, password.value)
+    const auth = getAuth()
+    createUserWithEmailAndPassword(auth, email.value, password.value)
     .then((data) => {
-        console.log(data)
         console.log("registrado")
+        console.log(auth.currentUser)
         router.push('/login')
     })
     .catch((error) => {

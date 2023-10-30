@@ -10,9 +10,9 @@ const routes = [
     { 
       path: '/create', 
       component: () => import('../views/CreateBoard.vue'),
-      meta: {
+      /* meta: {
         requiresAuth: true,
-      }},
+      }*/}, 
   ]
   
 const router = createRouter({

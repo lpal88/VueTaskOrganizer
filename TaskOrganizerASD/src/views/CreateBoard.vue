@@ -1,8 +1,7 @@
 <template>
     <section>
     <EmptyBoard :tasks="tasks" />
-    <button @click="playBoard">Reproducir</button>
-    <!--TODO playBoard-->
+    <router-link class="button" to="/play">Reproducir</router-link>
     <TaskList @addTaskToBoard="addTaskToBoard" />
     </section>
 </template>
@@ -33,7 +32,7 @@ section {
   flex-wrap: wrap;
   justify-content: space-around;
 }
-button {
+.button {
   font-family: 'Open Sans', sans-serif;
   font-weight: 600;
   font-size: 18px;
@@ -46,11 +45,11 @@ button {
   cursor: pointer;
   transition: background-color 0.3s ease;
 }
-button:hover {
+.button:hover {
   background-color: #E4007C;
 }
 
-button:active {
+.button:active {
   transform: translateY(1px);
   box-shadow: none;
 }

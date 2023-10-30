@@ -26,9 +26,10 @@ export default {
         addTaskToBoard({state, getters, commit, rootState, rootGetters}, task){
             console.log(task)
             const BoardTask = state.tasks.find(taskId => taskId === task.id)
-            if (!BoardTask){
+            if (state.tasks.length >= 15){
+                return
+            } else if (!BoardTask){
                 commit("pushTaskToBoard", task)
-
             }
         },
     },

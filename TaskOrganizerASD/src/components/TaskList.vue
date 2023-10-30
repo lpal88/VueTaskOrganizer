@@ -4,31 +4,36 @@
         <li v-for="task in tasks" :key="task.id" class="list__task"><img :src=urlPictograms+task.image>        
           <button @click="addTaskToBoard(task)">Seleccionar</button>
         </li>
+        <TaskCard />
       </ul>
     </div>
   </template>
 
   <script>
   import {mapActions} from "vuex"
+  import TaskCard from "./TaskCard.vue";
   export default {
     name: "tasks",
     data() {
       return {
         tasks: [],
-        urlPictograms: "https://apitaskorganizer-production.up.railway.app/api/pictograms/"
+/*         urlPictograms: "https://apitaskorganizer-production.up.railway.app/api/pictograms/" */
+        urlPictograms: 'https://localhost:3001/pictograms'
       };
     },
     mounted() {
       this.getData()
     },
     methods: {
+      
       async getData() {
         try {
-          const response = await fetch('https://apitaskorganizer-production.up.railway.app/api/tasks',{
+          //const response = await fetch('https://apitaskorganizer-production.up.railway.app/api/tasks',{
+            const response = await fetch('https://localhost:3001/api/tasks',{
                 method: 'GET',
                 headers: {
                     'Content-Type': 'application/json',
-                mode : "no-cors"
+                    mode : "no-cors" 
                 }
             })
           const data = await response.json()

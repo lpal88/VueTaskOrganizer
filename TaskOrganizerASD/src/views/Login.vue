@@ -21,27 +21,29 @@ const errMsg = ref("")
 const router = useRouter()
 
 const login = () => {
-    signInWithEmailAndPassword(getAuth(), email.value, password.value)
-    .then((data) => {
-        console.log("entrando en la app")
-        router.push('/create')
-    })
-    .catch((error) => {
-        console.log(error.code)
-        switch (error.code) {
-            case "auth/invalid-email":
-                errMsg.value = "email no valido"
-                break
-            case "auth/user-not-found":
-                errMsg.value = "email no registrado"
-                break
-            case "auth/wrong-password":
-                errMsg.value = "constraseña incorrecta" 
-                break      
-         
-        }
- 
-    })
+  const auth = getAuth()
+  signInWithEmailAndPassword(auth, email.value, password.value)
+  .then((data) => {
+      console.log("logeado!")
+      console.log(auth.currentUser)
+      router.push('/create')
+  })
+  .catch((error) => {
+      console.log(error.code)
+      switch (error.code) {
+          case "auth/invalid-email":
+              errMsg.value = "email no valido"
+              break
+          case "auth/user-not-found":
+              errMsg.value = "email no registrado"
+              break
+          case "auth/wrong-password":
+              errMsg.value = "constraseña incorrecta" 
+              break      
+        
+      }
+
+  })
 }
 
 </script>

@@ -1,13 +1,26 @@
 <template>
-    <div>
+    <empty-board></empty-board>
+    
 
-    </div>
 </template>
 
 <script>
-    export default {
-        
-    }
+import EmptyBoard from '../components/EmptyBoard.vue'
+import {mapState, mapGetters} from "vuex"
+import TaskList from '../components/TaskList.vue'
+export default {
+  name: "playBoard",
+  components: { EmptyBoard, TaskList },
+  computed: {
+    ...mapState('board', ['tasks']),
+    ...mapGetters ('board',{
+                tasks: "allTasksInBoard",
+            }),
+
+  },
+  
+
+}
 </script>
 
 <style scoped>
