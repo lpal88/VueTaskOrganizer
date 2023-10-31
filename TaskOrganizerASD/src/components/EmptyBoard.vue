@@ -3,6 +3,7 @@
       <ul class="list">
         <li v-for="task in tasks" :key="task.id" class="list__task">
           <img :src="fetchImage(task.image)" />
+          <button @click="removeTaskFromBoard(task.id)">Borrar</button>
         </li>
       </ul>
     </div>
@@ -10,7 +11,8 @@
   
   <script>
   import { mapGetters } from 'vuex'
-  
+  import { mapActions } from 'vuex'
+
   export default {
     data() {
       return {
@@ -28,9 +30,11 @@
     },
     methods: {
       fetchImage(task) {
-        console.log(task)
         return this.urlPictograms + task
-      }
+      },
+      ...mapActions('board', {
+          removeTaskFromBoard: 'removeTaskFromBoard'
+      })
     }
   }
   </script>

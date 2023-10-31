@@ -8,6 +8,9 @@ export default {
         pushTaskToBoard(state, taskId) {
             state.tasks.push(taskId)
         },
+        deleteTaskFromBoard(state, taskId) {
+            state.tasks = state.tasks.filter(task => task.id != taskId);
+        },
       
     },
     actions: {
@@ -31,6 +34,10 @@ export default {
             } else if (!BoardTask){
                 commit("pushTaskToBoard", task)
             }
+        },
+        removeTaskFromBoard({state, commit}, taskId){
+            console.log(state.tasks, "removeTask funcionando")
+            commit("deleteTaskFromBoard", taskId)
         },
     },
     getters: {
