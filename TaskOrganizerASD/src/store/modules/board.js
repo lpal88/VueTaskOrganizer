@@ -9,6 +9,7 @@ export default {
             state.tasks.push(taskId)
         },
         deleteTaskFromBoard(state, taskId) {
+            console.log("deleteTaskFromBoard mutation")
             state.tasks = state.tasks.filter(task => task.id != taskId);
         },
       
@@ -35,8 +36,9 @@ export default {
                 commit("pushTaskToBoard", task)
             }
         },
-        removeTaskFromBoard({state, commit}, taskId){
+        removeTaskFromBoard({state, getters, commit, rootState, rootGetters}, taskId){
             console.log(state.tasks, "removeTask funcionando")
+            console.log(taskId)
             commit("deleteTaskFromBoard", taskId)
         },
     },
@@ -49,7 +51,7 @@ export default {
                 console.log(taskInBoard.image)
                 const task = rootState.board.tasks.find(task => task.id === taskInBoard.data)
                 return {
-
+                    id: taskInBoard.id,
                     image: taskInBoard.image
                 }
             })
