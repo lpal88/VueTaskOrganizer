@@ -1,7 +1,8 @@
 <template>
     <div class="scrollable">
       <ul class="list">
-        <li v-for="task in tasks" :key="task.id" class="list__task"><img :src=urlPictograms+task.image>        
+        <li v-for="task in tasks" :key="task.id" class="list__task"><img :src=urlPictograms+task.image>     
+          {{ task.id }}   
           <button @click="addTaskToBoard(task)">Seleccionar</button>
         </li>
         <TaskCard />

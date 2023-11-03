@@ -6,10 +6,10 @@ export default {
     },
     mutations: {
         pushTaskToBoard(state, taskId) {
+            taskId.id = Math.floor(Math.random() * 99999999) // PARA QUE CADA ITEM EN EL BOARD TENGA UN ID ÚNICO
             state.tasks.push(taskId)
         },
         deleteTaskFromBoard(state, taskId) {
-            console.log("deleteTaskFromBoard mutation")
             state.tasks = state.tasks.filter(task => task.id != taskId);
         },
       
@@ -37,8 +37,6 @@ export default {
             }
         },
         removeTaskFromBoard({state, getters, commit, rootState, rootGetters}, taskId){
-            console.log(state.tasks, "removeTask funcionando")
-            console.log(taskId)
             commit("deleteTaskFromBoard", taskId)
         },
     },
@@ -48,10 +46,9 @@ export default {
         },
         allTasksInBoard(state, getters, rootState, rootGetters){ 
             return state.tasks.map(taskInBoard => {
-                console.log(taskInBoard.image)
                 const task = rootState.board.tasks.find(task => task.id === taskInBoard.data)
                 return {
-                    id: 2,
+                    id: taskInBoard.id,
                     image: taskInBoard.image
                 }
             })
