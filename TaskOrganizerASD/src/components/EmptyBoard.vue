@@ -3,7 +3,7 @@
       <ul class="list">
         <li v-for="task in tasks" :key="task.id" class="list__task">
           <img :src="fetchImage(task.image)" />
-          {{ task }}
+          {{ task.id }}
           <button @click="removeTaskFromBoard(task.id)">Borrar</button>
         </li>
       </ul>
@@ -33,6 +33,7 @@
       fetchImage(task) {
         return this.urlPictograms + task
       },
+  
       ...mapActions('board', {
           removeTaskFromBoard: 'removeTaskFromBoard'
       })

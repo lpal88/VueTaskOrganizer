@@ -51,7 +51,7 @@ export default {
                 console.log(taskInBoard.image)
                 const task = rootState.board.tasks.find(task => task.id === taskInBoard.data)
                 return {
-                    id: taskInBoard.id,
+                    id: 2,
                     image: taskInBoard.image
                 }
             })
