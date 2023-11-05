@@ -3,8 +3,6 @@
       <ul class="list">
         <li v-for="task in tasks" :key="task.newid" class="list__task">
           <img :src="fetchImage(task.image)" />
-          {{ task.id }}
-          {{ task.newid }}
           <button @click="removeTaskFromBoard(task.newid)">Borrar</button>
         </li>
       </ul>
