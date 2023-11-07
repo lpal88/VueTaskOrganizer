@@ -42,7 +42,7 @@
         return this.urlPictograms + task
       },
 
-      //DRAG&DROP EVENTS:
+      //EVENTOS DRAG&DROP:
       handleDragStart(index) {
         console.log(index)
         return this.draggedItem = index
@@ -57,12 +57,12 @@
         console.log(droppedItem)
         this.tasks.splice(index, 0, droppedItem)
         this.draggedItem = null
+        this.modifyTasks(this.tasks)
       },
-
-
   
       ...mapActions('board', {
-          removeTaskFromBoard: 'removeTaskFromBoard'
+        removeTaskFromBoard: 'removeTaskFromBoard',
+        modifyTasks: 'modifyTasks'
       })
     }
   }
