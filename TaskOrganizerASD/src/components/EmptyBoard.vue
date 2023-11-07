@@ -1,7 +1,14 @@
 <template>
-    <div class="emptyBoard">
+    <div class="emptyBoard" >
       <ul class="list">
-        <li v-for="task in tasks" :key="task.newid" class="list__task">
+        <li v-for="(task,index) in tasks" 
+        class="list__task" 
+        :key="task.newid" 
+        :index="index" 
+        :draggable="true" 
+        @dragstart="handleDragStart(index)" 
+        @dragover="handleDragOver" 
+        @drop="handleDrop(index)">
           <img :src="fetchImage(task.image)" />
           <button @click="removeTaskFromBoard(task.newid)">Borrar</button>
         </li>
@@ -12,11 +19,13 @@
   <script>
   import { mapGetters } from 'vuex'
   import { mapActions } from 'vuex'
+  
 
   export default {
     data() {
       return {
-        urlPictograms: `http://localhost:3001/api/pictograms/`
+        urlPictograms: `http://localhost:3001/api/pictograms/`,
+        draggedItem: null
       }
     },
 
@@ -32,6 +41,25 @@
       fetchImage(task) {
         return this.urlPictograms + task
       },
+
+      //DRAG&DROP EVENTS:
+      handleDragStart(index) {
+        console.log(index)
+        return this.draggedItem = index
+      },
+
+      handleDragOver(event) {
+        return event.preventDefault()
+      }, 
+
+      handleDrop(index) {
+        const droppedItem = this.tasks.splice(this.draggedItem, 1)[0]
+        console.log(droppedItem)
+        this.tasks.splice(index, 0, droppedItem)
+        this.draggedItem = null
+      },
+
+
   
       ...mapActions('board', {
           removeTaskFromBoard: 'removeTaskFromBoard'
