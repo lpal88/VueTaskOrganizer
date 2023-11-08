@@ -1,8 +1,12 @@
 <template>
     <section>
     <EmptyBoard :tasks="tasks" />
-    <router-link class="button" to="/play">Reproducir</router-link>
+    <div class="buttons">
+      <router-link class="button" to="/play">Reproducir</router-link>
+      <router-link class="button" to="/login">Guardar</router-link>
+    </div>
     <TaskList @addTaskToBoard="addTaskToBoard" />
+
     </section>
 </template>
 
@@ -32,10 +36,19 @@ section {
   flex-wrap: wrap;
   justify-content: space-around;
 }
+.buttons {
+  align-self: flex-end;
+  display: flex;
+  justify-content: center;
+  flex-wrap: wrap;
+  align-items: flex-end;
+}
 .button {
+  width: 40%;
   font-family: 'Open Sans', sans-serif;
   font-weight: 600;
   font-size: 18px;
+  text-align: center;
   padding: 10px 20px;
   margin: 30px;
   color: #fff;
