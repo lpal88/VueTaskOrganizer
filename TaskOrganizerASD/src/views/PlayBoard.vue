@@ -1,7 +1,5 @@
 <template>
     <empty-board></empty-board>
-    
-
 </template>
 
 <script>

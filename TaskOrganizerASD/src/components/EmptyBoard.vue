@@ -25,7 +25,7 @@
     data() {
       return {
         urlPictograms: `http://localhost:3001/api/pictograms/`,
-        draggedItem: null
+        draggedItem: null,
       }
     },
 

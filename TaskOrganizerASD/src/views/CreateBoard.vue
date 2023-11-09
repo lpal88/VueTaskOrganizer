@@ -1,9 +1,10 @@
 <template>
     <section>
+    <PlayedBoard v-show="playedBoard" />
     <EmptyBoard :tasks="tasks" />
     <div class="buttons">
       <router-link class="button" to="/play">Reproducir</router-link>
-      <router-link class="button" to="/login">Guardar</router-link>
+      <router-link class="button" to="/login"  @click="playBoard()">Guardar</router-link>
     </div>
     <TaskList @addTaskToBoard="addTaskToBoard" />
 
@@ -14,18 +15,32 @@
 import EmptyBoard from '../components/EmptyBoard.vue'
 import TaskList from '../components/TaskList.vue'
 import {mapActions, mapState, mapGetters} from "vuex"
+
 export default {
+  data() {
+      return {
+        playedBoard: false,
+      }
+    },
+
   name: "CreateBoard",
+
   components: { TaskList, EmptyBoard },
+
   computed: {
     ...mapState('board', ['tasks']),
     ...mapGetters ('board',{
                 tasks: "allTasksInBoard",
             }),
   },
+
   methods: {
     ...mapActions('crudBoard',["addBoard"]) ,
-    ...mapActions('board', ['addTaskToBoard'])
+    ...mapActions('board', ['addTaskToBoard']),
+
+    playBoard() {
+      this.playedBoard = true
+    }
 }
 }
 </script>
