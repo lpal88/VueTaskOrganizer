@@ -7,6 +7,7 @@
             </li>
         </ul>
         </div>
+        <Carousel />
         <back-button @click="this.closeComponent"></back-button>
     </div>
 </template>
@@ -15,9 +16,12 @@
 import BackButton from './BackButton.vue'
 import TaskList from '../components/TaskList.vue'
 import {mapState, mapGetters} from "vuex"
+import Carousel from './Carousel.vue'
+
+
 export default {
     name: "playedBoard",
-    components: { BackButton, TaskList },
+    components: { BackButton, TaskList, Carousel, },
     data() {
         return {
             urlPictograms: `http://localhost:3001/api/pictograms/`,
@@ -42,6 +46,6 @@ export default {
 }
 </script>
 
-<style lang="scss">
-  
+<style>
+
 </style>
