@@ -1,49 +1,52 @@
 <template>
     <div>
-        <Carousel>
-            <Slide v-for="task in tasks" :key="task.newid">
-                <div class="carousel__item">
-                    <img :src="fetchImage(task.image)" />
-                </div>
-            </Slide>
+<button @click="this.slideBack()" :disabled="this.disableSlideback">Anterior</button>
 
-            <template #addons>
-            <Navigation />
-            <Pagination />
-            </template>
-        </Carousel>
+{{ taskInProgress }}
+<img :src="fetchImage(this.taskInProgress.image)" alt="" v-if="this.taskInProgress"> <!-- v-if para que no de error cuando se carga el html antes del computed -->
+<button @click="this.slideNext()">Siguiente</button>
     </div>
 </template>
 
 <script>
 import { defineComponent } from 'vue'
-import { Carousel, Navigation, Pagination, Slide } from 'vue3-carousel'
 import {mapState, mapGetters} from "vuex"
-import 'vue3-carousel/dist/carousel.css'
 
 export default defineComponent({
     data() {
         return {
             urlPictograms: `http://localhost:3001/api/pictograms/`,
+            index: 0,
+            disableSlideback: true
         }
     },
-  name: 'Basic',
+  name: 'Carousel',
   components: {
-    Carousel,
-    Slide,
-    Pagination,
-    Navigation,
   },
   methods: {
         fetchImage(task) {
-        return this.urlPictograms + task
+          return this.urlPictograms + task
         },
+        slideNext() {
+          this.index = this.index + 1
+          this.disableSlideback = false
+        },
+        slideBack() {
+          this.index = this.index - 1
+          if(this.index == 0) {
+            this.disableSlideback = true
+          }
+        },
+       
     },
   computed: {
     ...mapState('board', ['tasks']),
     ...mapGetters ('board',{
                 tasks: "allTasksInBoard",
             }),
+    taskInProgress() {
+      return this.tasks[this.index]
+    }
 
   },
 })
